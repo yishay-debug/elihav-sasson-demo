@@ -44,7 +44,7 @@
   /* hero full-bleed */
   .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
   .hero .bg{position:absolute;inset:-8%;z-index:0;will-change:transform}
-  .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+  .hero .bg img,.hero .bg video{width:100%;height:100%;object-fit:cover;object-position:center 20%}
   .hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.2) 40%,rgba(0,0,0,.6))}
   .hero .inner{position:relative;z-index:2;padding:0 24px}
   .hero .eyebrow{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:#e8e2d8;margin-bottom:24px}
@@ -166,7 +166,7 @@
 </header>
 
 <section class="hero" id="top">
-  <div class="bg" id="heroBg"><img src="assets/hero.jpg" alt="Elihav Sasson couture"></div>
+  <div class="bg" id="heroBg"><video autoplay muted loop playsinline poster="assets/hero.jpg"><source src="assets/hero.mp4" type="video/mp4"></video></div>
   <div class="veil"></div>
   <div class="inner">
     <div class="eyebrow">Maison de Couture &middot; Est. 2005</div>
