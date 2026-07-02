@@ -16,6 +16,8 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+  [id]{scroll-margin-top:110px}
+  @media(max-width:820px){[id]{scroll-margin-top:150px}}
   html{overflow-x:clip}
   body{background:var(--black);color:var(--white);font-family:var(--body);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:clip}
   a{color:inherit;text-decoration:none}
@@ -147,7 +149,7 @@
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;opacity:0;pointer-events:none;transition:opacity .4s}
   .overlay.open{opacity:1;pointer-events:auto}
   .drawer{position:fixed;top:0;right:0;height:100%;width:384px;max-width:90vw;background:#0a0a0a;border-left:1px solid var(--line);z-index:90;transform:translateX(100%);transition:transform .45s var(--ease);display:flex;flex-direction:column}
-  .drawer.open{transform:none}
+  .drawer.open{transform:translateX(0)}
   .drawer .dhead{display:flex;justify-content:space-between;align-items:center;padding:24px;border-bottom:1px solid var(--line)}
   .drawer .dhead h3{font-family:var(--head);font-size:16px;letter-spacing:3px;text-transform:uppercase;font-weight:400}
   .drawer .close{cursor:pointer;font-size:22px;line-height:1;color:#fff;background:none;border:none}
@@ -177,6 +179,8 @@
     .duo .pane{height:74vh}
     .designer .media{min-height:80vh}
     .grid{grid-template-columns:1fr;gap:44px;max-width:400px}
+    .pillars .row{grid-template-columns:1fr;gap:40px;max-width:300px}
+    .pillars .col p{max-width:none}
     .rtw,.band,footer,.designer .copy{padding-left:22px;padding-right:22px}
     .designer .copy{padding:60px 24px}
   }
