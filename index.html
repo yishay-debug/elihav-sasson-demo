@@ -122,6 +122,9 @@
   /* map strip */
   .mapstrip{position:relative;height:360px;border-top:1px solid var(--line);background:#0a0a0a;overflow:hidden}
   .mapstrip iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.92) contrast(.9);opacity:.85}
+  .map-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:22px;text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#fff;pointer-events:none}
+  .map-cap a{pointer-events:auto;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:3px;transition:opacity .3s}
+  .map-cap a:hover{opacity:.7}
   @media(max-width:820px){.mapstrip{height:280px}}
 
   /* footer */
@@ -410,6 +413,7 @@
 
 <section class="mapstrip" aria-label="Atelier location — Neve Tzedek, Tel Aviv">
   <iframe title="Elihav Sasson atelier — Neve Tzedek, Tel Aviv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Neve%20Tzedek%2C%20Tel%20Aviv&output=embed"></iframe>
+  <div class="map-cap"><a href="https://www.google.com/maps/search/?api=1&query=Neve%20Tzedek%2C%20Tel%20Aviv" target="_blank" rel="noopener">Neve Tzedek, Tel Aviv — Open in Google Maps</a></div>
 </section>
 
 <footer id="catalogue">
