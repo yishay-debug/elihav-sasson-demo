@@ -574,7 +574,10 @@
     demoCheckoutMsg();
   }
   renderCart();
-  function submitCatalogue(e){e.preventDefault();document.getElementById('msg').textContent='Thank you — your catalogue is on its way.';e.target.reset();return false;}
+  function submitCatalogue(e){e.preventDefault();document.getElementById('msg').textContent='Thank you — your lookbook is on its way.';e.target.reset();return false;}
+  /* safety net: never let the loader curtain block the page, and nudge muted autoplay */
+  setTimeout(function(){var c=document.querySelector('.curtain');if(c){c.style.display='none';}},3200);
+  (function(){var v=document.querySelector('.hero video');if(v){var p=v.play();if(p&&p.catch){p.catch(function(){});}}})();
 </script>
 </body>
 </html>
