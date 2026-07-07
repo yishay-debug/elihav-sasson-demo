@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <style>
   :root{
     --black:#000;--white:#fff;--grey:#c9c9c9;--muted:#8a8a8a;--line:#242424;
@@ -25,15 +26,16 @@
 
   /* curtain loader */
   .curtain{position:fixed;inset:0;z-index:999;background:#000;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:curtainOut 1.2s var(--ease) 1.6s forwards}
-  .curtain span{font-family:var(--head);font-size:clamp(18px,2.4vw,28px);letter-spacing:.5em;color:#fff;opacity:0;animation:cIn 1s var(--ease) .2s forwards,cOut .6s ease 1.3s forwards}
-  @keyframes cIn{from{opacity:0;letter-spacing:.2em}to{opacity:1;letter-spacing:.5em}}
+  .curtain img{width:min(340px,64vw);height:auto;object-fit:contain;opacity:0;animation:cIn 1s var(--ease) .2s forwards,cOut .6s ease 1.3s forwards}
+  @keyframes cIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
   @keyframes cOut{to{opacity:0}}
   @keyframes curtainOut{to{transform:translateY(-101%)}}
 
   /* header */
   header{position:fixed;top:0;left:0;right:0;z-index:60;text-align:center;transition:background .4s var(--ease),padding .4s var(--ease);padding:30px 40px 22px;background:transparent}
   body.scrolled header{background:rgba(0,0,0,.9);padding:14px 40px;backdrop-filter:blur(8px)}
-  .brand{font-family:var(--head);font-size:24px;letter-spacing:8px;text-transform:uppercase}
+  .brand{line-height:0}
+  .brand img{display:inline-block;height:19px;width:auto;object-fit:contain}
 
   /* hero full-bleed */
   .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
@@ -121,6 +123,7 @@
   .copyright{margin-top:34px;font-size:10px;letter-spacing:2px;color:#555;text-transform:uppercase}
 
   /* social row in footer */
+  .fmono{width:46px;height:auto;object-fit:contain;margin:0 auto 24px;opacity:.85}
   .social{display:flex;gap:18px;justify-content:center;margin-top:34px}
   .social a{opacity:.75;transition:opacity .3s;display:flex;align-items:center}
   .social a:hover{opacity:1}
@@ -199,7 +202,7 @@
 
   @media(max-width:820px){
     header{padding:16px 20px 14px}
-    .brand{font-size:19px;letter-spacing:4px}
+    .brand img{height:15px}
     .duo,.designer{grid-template-columns:1fr}
     .duo .pane{height:70vh}
     .duo .pane img{object-position:center 15%}
@@ -216,7 +219,7 @@
 </head>
 <body>
 
-<div class="curtain"><span>ELIHAV SASSON</span></div>
+<div class="curtain"><img src="assets/logo-full.svg" alt="Elihav Sasson — Maison de Couture"></div>
 
 <div class="cart-btn" onclick="openCart()" aria-label="Open cart">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
@@ -233,7 +236,7 @@
 </button>
 
 <header>
-  <div class="brand">Elihav Sasson</div>
+  <div class="brand"><a href="#top" aria-label="Elihav Sasson — home"><img src="assets/logo.svg" alt="Elihav Sasson"></a></div>
 </header>
 
 <div class="menu-overlay" id="menuOverlay">
@@ -387,6 +390,7 @@
 </section>
 
 <footer id="catalogue">
+  <img class="fmono" src="assets/monogram.svg" alt="" aria-hidden="true">
   <div class="eyebrow">The Modest Collection</div>
   <h2>Receive the Full Catalogue</h2>
   <p class="lead">Leave your email to receive the complete Modest Collection catalogue.</p>
