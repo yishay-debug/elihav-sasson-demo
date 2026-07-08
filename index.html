@@ -175,6 +175,33 @@
   .menu-overlay a:nth-child(5){transition-delay:.2s}
   .menu-overlay a:nth-child(6){transition-delay:.25s}
 
+  /* collection gallery overlay */
+  .gallery-overlay{position:fixed;inset:0;background:#000;z-index:95;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .gallery-overlay.open{opacity:1;pointer-events:auto}
+  .g-head{position:sticky;top:0;z-index:2;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:28px 40px 22px;text-align:center}
+  .g-head .g-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .g-head .g-title{font-family:var(--head);font-size:clamp(22px,3.4vw,38px);letter-spacing:5px;text-transform:uppercase;font-weight:400}
+  .g-close{position:absolute;top:22px;right:28px;font-size:28px;line-height:1;color:#fff;background:none;border:none;cursor:pointer}
+  .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1120px;margin:0 auto;padding:44px 40px 30px;width:100%}
+  .g-card{cursor:pointer}
+  .g-card .frame{position:relative;overflow:hidden;aspect-ratio:3/4;background:#111}
+  .g-card .frame img{transition:transform 1.2s var(--ease)}
+  .g-card:hover .frame img{transform:scale(1.05)}
+  .g-card .n{margin-top:16px;font-family:var(--head);font-size:15px;letter-spacing:2px;text-transform:uppercase;text-align:center}
+  .g-card .enq{margin-top:6px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;transition:color .3s}
+  .g-card:hover .enq{color:#fff}
+  .g-empty{grid-column:1/-1;text-align:center;color:var(--muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:40px 0}
+  .g-foot{text-align:center;padding:20px 40px 70px}
+  @media(max-width:820px){
+    .g-head{padding:calc(22px + env(safe-area-inset-top,0px)) 20px 18px}
+    .g-close{top:calc(20px + env(safe-area-inset-top,0px));right:20px}
+    .g-grid{grid-template-columns:repeat(2,1fr);gap:14px;padding:24px 16px 24px}
+    .g-card .n{font-size:12px;letter-spacing:1.5px}
+  }
+  /* clickable collection cues */
+  .block,.duo .pane{cursor:pointer}
+  .view-cue{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:3px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
+
   /* product badge + note */
   .card{position:relative}
   .badge-modest{position:absolute;top:12px;left:12px;z-index:3;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.45);color:#fff;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 10px}
@@ -271,11 +298,22 @@
 
 <div class="menu-overlay" id="menuOverlay">
   <button class="menu-close" onclick="closeMenu()" aria-label="Close menu">&times;</button>
-  <a href="#bridal" onclick="closeMenu()">Bridal</a>
-  <a href="#collections" onclick="closeMenu()">Evening</a>
+  <a href="#bridal" onclick="closeMenu();openCollection('bridal');return false;">Bridal</a>
+  <a href="#collections" onclick="closeMenu();openCollection('evening');return false;">Evening</a>
+  <a href="#collections" onclick="closeMenu();openCollection('couture');return false;">Couture</a>
   <a href="#rtw" onclick="closeMenu()">Shop the Collection</a>
   <a href="#designer" onclick="closeMenu()">About Elihav</a>
   <a href="#appointments" onclick="closeMenu()">Contact Us</a>
+</div>
+
+<div class="gallery-overlay" id="galleryOverlay" aria-hidden="true" role="dialog" aria-label="Collection gallery">
+  <div class="g-head">
+    <button class="g-close" onclick="closeGallery()" aria-label="Close collection">&times;</button>
+    <div class="g-eyebrow" id="gEyebrow">The Collection</div>
+    <div class="g-title" id="gTitle">Collection</div>
+  </div>
+  <div class="g-grid" id="gGrid"></div>
+  <div class="g-foot"><a class="btn" id="gCta" href="#" target="_blank" rel="noopener">Book a Private Fitting</a></div>
 </div>
 
 <section class="hero" id="top">
@@ -294,32 +332,33 @@
   <p>A couture house of modest bridal and evening wear — long sleeves, considered necklines and full-length silhouettes, crafted by hand in Neve Tzedek since 2005. Shop ready-to-wear online, or book a private fitting for couture.</p>
 </section>
 
-<section class="block reveal" id="bridal">
+<section class="block reveal" id="bridal" onclick="openCollection('bridal')" role="button" tabindex="0" aria-label="Open the Bridal collection">
   <img src="assets/bridal.jpg" alt="Bridal couture">
   <div class="veil"></div>
   <div class="cap">
     <div class="eyebrow">The Bridal Collection</div>
     <h2>Bridal</h2>
+    <span class="view-cue">View the Collection</span>
   </div>
 </section>
 
 <section class="duo" id="collections">
-  <div class="pane reveal">
+  <div class="pane reveal" onclick="openCollection('evening')" role="button" tabindex="0" aria-label="Open the Evening collection">
     <img src="assets/evening.jpg" alt="Evening gown">
     <div class="veil"></div>
     <div class="cap">
       <div class="eyebrow">Evening</div>
       <h3>The Evening Edit</h3>
-      <a href="#appointments">Book a Fitting</a>
+      <span class="view-cue">View the Collection</span>
     </div>
   </div>
-  <div class="pane reveal">
+  <div class="pane reveal" onclick="openCollection('couture')" role="button" tabindex="0" aria-label="Open the Couture collection">
     <img src="assets/couture.jpg" alt="Couture gown">
     <div class="veil"></div>
     <div class="cap">
       <div class="eyebrow">Couture</div>
       <h3>The Atelier</h3>
-      <a href="#appointments">Book a Fitting</a>
+      <span class="view-cue">View the Collection</span>
     </div>
   </div>
 </section>
@@ -563,6 +602,58 @@
   function closeCart(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function openMenu(){document.getElementById('menuOverlay').classList.add('open');}
   function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');}
+
+  /* ============================================================
+     COLLECTION GALLERIES  —  EDIT THE GOWNS PER COLLECTION HERE
+     For each collection, add items: {img:'assets/<file>.jpg', name:'<Gown name>'}
+     Drop the gown photos into the assets/ folder and list them below.
+     (current images are placeholders — replace with the real gowns)
+     ============================================================ */
+  var COLLECTIONS = {
+    bridal: { eyebrow:'The Bridal Collection', title:'Bridal', items:[
+      {img:'assets/bridal.jpg', name:'Bridal Look 01'},
+      {img:'assets/look-4.jpg', name:'Bridal Look 02'},
+      {img:'assets/look-3.jpg', name:'Bridal Look 03'}
+    ]},
+    evening: { eyebrow:'The Evening Edit', title:'Evening', items:[
+      {img:'assets/evening.jpg', name:'Evening Look 01'},
+      {img:'assets/look-1.jpg', name:'Evening Look 02'},
+      {img:'assets/look-2.jpg', name:'Evening Look 03'},
+      {img:'assets/look-6.jpg', name:'Evening Look 04'}
+    ]},
+    couture: { eyebrow:'The Atelier', title:'Couture', items:[
+      {img:'assets/couture.jpg', name:'Couture Look 01'},
+      {img:'assets/look-5.jpg', name:'Couture Look 02'}
+    ]}
+  };
+  function gEsc(s){return (s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function openCollection(key){
+    var c=COLLECTIONS[key]; if(!c){return;}
+    closeMenu();
+    document.getElementById('gEyebrow').textContent=c.eyebrow;
+    document.getElementById('gTitle').textContent=c.title;
+    var grid=document.getElementById('gGrid');
+    grid.innerHTML=(c.items&&c.items.length)? c.items.map(function(it){
+      return '<div class="g-card" data-name="'+gEsc(it.name)+'" data-col="'+gEsc(c.title)+'">'
+        +'<div class="frame"><img src="'+it.img+'" alt="'+gEsc(it.name)+'" loading="lazy"></div>'
+        +'<div class="n">'+gEsc(it.name)+'</div><div class="enq">Enquire &#8599;</div></div>';
+    }).join('') : '<div class="g-empty">Collection coming soon</div>';
+    document.getElementById('gCta').setAttribute('href', waLink('Hello Elihav Sasson, I’d like to book a private fitting for the '+c.title+' collection.'));
+    var ov=document.getElementById('galleryOverlay');
+    ov.scrollTop=0; ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeGallery(){
+    var ov=document.getElementById('galleryOverlay');
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('click',function(e){
+    var card=e.target.closest('#gGrid .g-card'); if(!card){return;}
+    var name=card.getAttribute('data-name'), col=card.getAttribute('data-col');
+    window.open(waLink('Hello Elihav Sasson, I’d love to see the '+name+' from the '+col+' collection.'),'_blank');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeGallery();closeMenu();}});
   function demoCheckoutMsg(){
     var box=document.getElementById('cartItems');
     box.innerHTML='<p style="padding:40px 0;text-align:center;color:var(--grey);font-size:12px;letter-spacing:2px;text-transform:uppercase;line-height:2">This is a preview store.<br>Checkout activates once the boutique goes live.</p>';
