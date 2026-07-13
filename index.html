@@ -175,19 +175,6 @@
   .menu-overlay a:nth-child(5){transition-delay:.2s}
   .menu-overlay a:nth-child(6){transition-delay:.25s}
 
-  /* become a retailer overlay */
-  .retailer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:90;display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
-  .retailer-overlay.open{opacity:1;pointer-events:auto}
-  .retailer-overlay .r-close{position:absolute;top:24px;right:28px;font-size:26px;line-height:1;color:#fff;background:none;border:none;cursor:pointer}
-  .retailer-box{width:100%;max-width:460px;text-align:center}
-  .retailer-box .eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-  .retailer-box h2{font-family:var(--head);font-size:clamp(22px,2.6vw,32px);letter-spacing:3px;text-transform:uppercase;font-weight:400}
-  .retailer-box p{margin:18px auto 34px;max-width:400px;font-size:13px;line-height:2;letter-spacing:1px;color:var(--grey)}
-  .retailer-box .capture{flex-direction:column;flex-wrap:nowrap;gap:12px;margin-bottom:14px}
-  .retailer-box .capture input{width:100%}
-  .retailer-box .capture button{width:100%}
-  .retailer-box .rmsg{min-height:18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
-
   /* collection gallery overlay */
   .gallery-overlay{position:fixed;inset:0;background:#000;z-index:95;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);overflow-y:auto;-webkit-overflow-scrolling:touch}
   .gallery-overlay.open{opacity:1;pointer-events:auto}
@@ -352,22 +339,7 @@
   <a href="#collections" onclick="closeMenu();openCollection('evening');return false;">Evening</a>
   <a href="#designer" onclick="closeMenu()">About Elihav</a>
   <a href="#appointments" onclick="closeMenu()">Contact Us</a>
-  <a href="#retailer" onclick="closeMenu();openRetailer();return false;">Become a Retailer</a>
-</div>
-
-<div class="retailer-overlay" id="retailerOverlay" aria-hidden="true" role="dialog" aria-label="Become a retailer">
-  <button class="r-close" onclick="closeRetailer()" aria-label="Close">&times;</button>
-  <div class="retailer-box">
-    <div class="eyebrow">Wholesale</div>
-    <h2>Become a Retailer</h2>
-    <p>Interested in carrying Elihav Sasson? Leave your details and our team will be in touch shortly.</p>
-    <form class="capture" onsubmit="return submitRetailer(event)">
-      <input type="text" placeholder="Boutique / Company" aria-label="Boutique or company name">
-      <input type="email" placeholder="your@email.com" required aria-label="Email address">
-      <button type="submit">Submit</button>
-    </form>
-    <div class="rmsg" id="rmsg"></div>
-  </div>
+  <a href="https://wa.me/972515358153?text=Hello%20Elihav%20Sasson%2C%20I%27d%20like%20to%20become%20a%20retailer%20of%20your%20collection.%20Could%20you%20share%20your%20wholesale%20terms%3F" target="_blank" rel="noopener" onclick="closeMenu();">Become a Retailer</a>
 </div>
 
 <div class="gallery-overlay" id="galleryOverlay" aria-hidden="true" role="dialog" aria-label="Collection gallery">
@@ -490,7 +462,7 @@
     <a href="#collections" onclick="openCollection('evening');return false;">Evening</a>
     <a href="#designer">About Elihav</a>
     <a href="#appointments">Contact Us</a>
-    <a href="#retailer" onclick="openRetailer();return false;">Become a Retailer</a>
+    <a href="https://wa.me/972515358153?text=Hello%20Elihav%20Sasson%2C%20I%27d%20like%20to%20become%20a%20retailer%20of%20your%20collection.%20Could%20you%20share%20your%20wholesale%20terms%3F" target="_blank" rel="noopener">Become a Retailer</a>
   </div>
   <div class="social">
     <a href="https://www.instagram.com/elihavsassonofficial/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -633,9 +605,6 @@
   function closeCart(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function openMenu(){document.getElementById('menuOverlay').classList.add('open');}
   function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');}
-  function openRetailer(){var o=document.getElementById('retailerOverlay');o.classList.add('open');o.setAttribute('aria-hidden','false');}
-  function closeRetailer(){var o=document.getElementById('retailerOverlay');o.classList.remove('open');o.setAttribute('aria-hidden','true');}
-  function submitRetailer(e){e.preventDefault();document.getElementById('rmsg').textContent='Thank you — our team will be in touch shortly.';e.target.reset();return false;}
 
   /* ============================================================
      COLLECTIONS  —  data lives in assets/collections.js (window.COLLECTIONS)
@@ -727,7 +696,7 @@
       stage.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){gownStep(dx<0?1:-1);}sx=null;},{passive:true});}
   })();
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){if(document.getElementById('gownOverlay').classList.contains('open')){closeGown();}else{closeGallery();closeMenu();closeRetailer();}}
+    if(e.key==='Escape'){if(document.getElementById('gownOverlay').classList.contains('open')){closeGown();}else{closeGallery();closeMenu();}}
     if(document.getElementById('gownOverlay').classList.contains('open')){if(e.key==='ArrowLeft')gownStep(-1);if(e.key==='ArrowRight')gownStep(1);}
   });
   function demoCheckoutMsg(){
