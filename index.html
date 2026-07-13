@@ -175,6 +175,19 @@
   .menu-overlay a:nth-child(5){transition-delay:.2s}
   .menu-overlay a:nth-child(6){transition-delay:.25s}
 
+  /* become a retailer overlay */
+  .retailer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:90;display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+  .retailer-overlay.open{opacity:1;pointer-events:auto}
+  .retailer-overlay .r-close{position:absolute;top:24px;right:28px;font-size:26px;line-height:1;color:#fff;background:none;border:none;cursor:pointer}
+  .retailer-box{width:100%;max-width:460px;text-align:center}
+  .retailer-box .eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .retailer-box h2{font-family:var(--head);font-size:clamp(22px,2.6vw,32px);letter-spacing:3px;text-transform:uppercase;font-weight:400}
+  .retailer-box p{margin:18px auto 34px;max-width:400px;font-size:13px;line-height:2;letter-spacing:1px;color:var(--grey)}
+  .retailer-box .capture{flex-direction:column;flex-wrap:nowrap;gap:12px;margin-bottom:14px}
+  .retailer-box .capture input{width:100%}
+  .retailer-box .capture button{width:100%}
+  .retailer-box .rmsg{min-height:18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey)}
+
   /* collection gallery overlay */
   .gallery-overlay{position:fixed;inset:0;background:#000;z-index:95;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);overflow-y:auto;-webkit-overflow-scrolling:touch}
   .gallery-overlay.open{opacity:1;pointer-events:auto}
@@ -338,6 +351,22 @@
   <a href="#collections" onclick="closeMenu();openCollection('evening');return false;">Evening</a>
   <a href="#designer" onclick="closeMenu()">About Elihav</a>
   <a href="#appointments" onclick="closeMenu()">Contact Us</a>
+  <a href="#retailer" onclick="closeMenu();openRetailer();return false;">Become a Retailer</a>
+</div>
+
+<div class="retailer-overlay" id="retailerOverlay" aria-hidden="true" role="dialog" aria-label="Become a retailer">
+  <button class="r-close" onclick="closeRetailer()" aria-label="Close">&times;</button>
+  <div class="retailer-box">
+    <div class="eyebrow">Wholesale</div>
+    <h2>Become a Retailer</h2>
+    <p>Interested in carrying Elihav Sasson? Leave your details and our team will be in touch shortly.</p>
+    <form class="capture" onsubmit="return submitRetailer(event)">
+      <input type="text" placeholder="Boutique / Company" aria-label="Boutique or company name">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit">Submit</button>
+    </form>
+    <div class="rmsg" id="rmsg"></div>
+  </div>
 </div>
 
 <div class="gallery-overlay" id="galleryOverlay" aria-hidden="true" role="dialog" aria-label="Collection gallery">
@@ -424,11 +453,9 @@
     <h2>Contact Us</h2>
     <p>Bridal, evening and couture are created through a personal fitting at our Neve Tzedek atelier in Tel Aviv. Reserve a private consultation.</p>
     <div class="contact-details">
-      <!-- TODO: confirm exact street address -->
-      <div class="cd-row"><span class="cd-label">Atelier</span><span>Neve Tzedek, Tel Aviv</span></div>
+      <div class="cd-row"><span class="cd-label">Atelier</span><span>Shabazi St 59, Neve Tzedek, Tel Aviv</span></div>
       <div class="cd-row"><span class="cd-label">Phone</span><a href="tel:+972515358153">+972 51-535-8153</a></div>
-      <!-- TODO: confirm official email -->
-      <div class="cd-row"><span class="cd-label">Email</span><a href="mailto:info@elihav-sasson.com">info@elihav-sasson.com</a></div>
+      <div class="cd-row"><span class="cd-label">Office</span><a href="mailto:office@elihav-sasson.com">office@elihav-sasson.com</a></div>
     </div>
     <div class="contact-icons">
       <a href="https://www.instagram.com/elihavsassonofficial/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -442,9 +469,9 @@
   </div>
 </section>
 
-<section class="mapstrip" aria-label="Atelier location — Neve Tzedek, Tel Aviv">
-  <iframe title="Elihav Sasson atelier — Neve Tzedek, Tel Aviv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Neve%20Tzedek%2C%20Tel%20Aviv&output=embed"></iframe>
-  <div class="map-cap"><a href="https://www.google.com/maps/search/?api=1&query=Neve%20Tzedek%2C%20Tel%20Aviv" target="_blank" rel="noopener">Neve Tzedek, Tel Aviv — Open in Google Maps</a></div>
+<section class="mapstrip" aria-label="Atelier location — Shabazi St 59, Neve Tzedek, Tel Aviv">
+  <iframe title="Elihav Sasson atelier — Shabazi St 59, Neve Tzedek, Tel Aviv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Shabazi%20St%2059%2C%20Neve%20Tzedek%2C%20Tel%20Aviv&output=embed"></iframe>
+  <div class="map-cap"><a href="https://www.google.com/maps/search/?api=1&query=Shabazi%20St%2059%2C%20Neve%20Tzedek%2C%20Tel%20Aviv" target="_blank" rel="noopener">Shabazi St 59, Neve Tzedek, Tel Aviv — Open in Google Maps</a></div>
 </section>
 
 <footer id="catalogue">
@@ -462,6 +489,7 @@
     <a href="#collections" onclick="openCollection('evening');return false;">Evening</a>
     <a href="#designer">About Elihav</a>
     <a href="#appointments">Contact Us</a>
+    <a href="#retailer" onclick="openRetailer();return false;">Become a Retailer</a>
   </div>
   <div class="social">
     <a href="https://www.instagram.com/elihavsassonofficial/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -472,7 +500,7 @@
       </svg>
     </a>
   </div>
-  <div class="copyright">&copy; 2026 Elihav Sasson &middot; Maison de Couture &middot; Neve Tzedek, Tel Aviv</div>
+  <div class="copyright">&copy; 2026 Elihav Sasson &middot; Maison de Couture &middot; Shabazi St 59, Neve Tzedek, Tel Aviv</div>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
@@ -604,6 +632,9 @@
   function closeCart(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
   function openMenu(){document.getElementById('menuOverlay').classList.add('open');}
   function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');}
+  function openRetailer(){var o=document.getElementById('retailerOverlay');o.classList.add('open');o.setAttribute('aria-hidden','false');}
+  function closeRetailer(){var o=document.getElementById('retailerOverlay');o.classList.remove('open');o.setAttribute('aria-hidden','true');}
+  function submitRetailer(e){e.preventDefault();document.getElementById('rmsg').textContent='Thank you — our team will be in touch shortly.';e.target.reset();return false;}
 
   /* ============================================================
      COLLECTIONS  —  data lives in assets/collections.js (window.COLLECTIONS)
@@ -695,7 +726,7 @@
       stage.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){gownStep(dx<0?1:-1);}sx=null;},{passive:true});}
   })();
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){if(document.getElementById('gownOverlay').classList.contains('open')){closeGown();}else{closeGallery();closeMenu();}}
+    if(e.key==='Escape'){if(document.getElementById('gownOverlay').classList.contains('open')){closeGown();}else{closeGallery();closeMenu();closeRetailer();}}
     if(document.getElementById('gownOverlay').classList.contains('open')){if(e.key==='ArrowLeft')gownStep(-1);if(e.key==='ArrowRight')gownStep(1);}
   });
   function demoCheckoutMsg(){
