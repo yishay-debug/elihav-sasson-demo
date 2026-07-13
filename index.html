@@ -184,7 +184,7 @@
   .g-close{position:absolute;top:22px;right:28px;font-size:28px;line-height:1;color:#fff;background:none;border:none;cursor:pointer}
   .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1120px;margin:0 auto;padding:44px 40px 30px;width:100%}
   .g-card{cursor:pointer}
-  .g-card .frame{position:relative;overflow:hidden;aspect-ratio:3/4;background:#111}
+  .g-card .frame{position:relative;overflow:hidden;aspect-ratio:9/16;background:#111}
   .g-card .frame img{object-position:center top;transition:transform 1.2s var(--ease)}
   .g-card:hover .frame img{transform:scale(1.05)}
   .g-card .n{margin-top:16px;font-family:var(--head);font-size:15px;letter-spacing:2px;text-transform:uppercase;text-align:center}
@@ -611,6 +611,7 @@
      handle = Shopify product handle (pre-wired for the Storefront API).
      ============================================================ */
   var COLLECTIONS = window.COLLECTIONS || {};
+  (function(){var v='?v=2';Object.keys(COLLECTIONS).forEach(function(k){(COLLECTIONS[k].items||[]).forEach(function(it){(it.imgs||[]).forEach(function(im){if(im.src.indexOf('?')<0)im.src+=v;});});});})();
   function gEsc(s){return (s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   var CUR_COLL=null;
 
