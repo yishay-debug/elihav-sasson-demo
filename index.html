@@ -85,6 +85,32 @@
   .designer h2{font-family:var(--head);font-size:clamp(26px,3.2vw,42px);letter-spacing:3px;text-transform:uppercase;font-weight:400;line-height:1.3}
   .designer p{margin-top:24px;font-size:13px;line-height:2.1;letter-spacing:.5px;color:var(--grey);max-width:440px}
 
+  /* Ordering process */
+  .process{padding:120px 40px;border-top:1px solid var(--line);background:#050505}
+  .process .phead{text-align:center;max-width:600px;margin:0 auto 78px}
+  .process .eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .process h2{font-family:var(--head);font-size:clamp(26px,3.2vw,40px);letter-spacing:4px;text-transform:uppercase;font-weight:400;line-height:1.35}
+  .process .phead p{margin-top:22px;font-size:13px;line-height:2.1;letter-spacing:.5px;color:var(--grey)}
+  .steps{max-width:760px;margin:0 auto}
+  .pstep{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:34px 0;border-bottom:1px solid var(--line)}
+  .pstep:last-of-type{border-bottom:0}
+  .pstep .pn{font-family:var(--head);font-size:12px;letter-spacing:3px;color:var(--muted);padding-top:6px}
+  .pstep h3{font-family:var(--head);font-size:17px;letter-spacing:2.5px;text-transform:uppercase;font-weight:400;line-height:1.5}
+  .pstep p{margin-top:12px;font-size:13px;line-height:2.05;letter-spacing:.5px;color:var(--grey);max-width:520px}
+  .popts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;max-width:560px}
+  .popt{border:1px solid var(--line);background:#0a0a0a;padding:24px 22px}
+  .popt .plabel{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:13px}
+  .popt h4{font-family:var(--body);font-weight:400;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.6;color:var(--white)}
+  .popt p{margin-top:10px;font-size:12.5px;line-height:1.95;color:var(--grey);max-width:none}
+  .pfine{text-align:center;margin-top:62px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  @media (max-width:760px){
+    .process{padding:86px 24px}
+    .process .phead{margin-bottom:54px}
+    .pstep{grid-template-columns:44px 1fr;padding:28px 0}
+    .popts{grid-template-columns:1fr}
+    .pfine{letter-spacing:1.5px;line-height:2}
+  }
+
   /* RTW grid */
   .rtw{padding:110px 40px;text-align:center}
   .rtw .eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
@@ -338,6 +364,7 @@
   <a href="#bridal" onclick="closeMenu();openCollection('bridal');return false;">Bridal</a>
   <a href="#collections" onclick="closeMenu();openCollection('evening');return false;">Evening</a>
   <a href="#designer" onclick="closeMenu()">About Elihav</a>
+  <a href="#process" onclick="closeMenu()">The Process</a>
   <a href="#appointments" onclick="closeMenu()">Contact Us</a>
   <a href="https://wa.me/972515358153?text=Hello%20Elihav%20Sasson%2C%20I%27d%20like%20to%20become%20a%20retailer%20of%20your%20collection.%20Could%20you%20share%20your%20wholesale%20terms%3F" target="_blank" rel="noopener" onclick="closeMenu();">Become a Retailer</a>
 </div>
@@ -416,6 +443,106 @@
     <p>Every gown begins with a private consultation and is made entirely to measure.</p>
     <a href="#appointments" class="btn" style="margin-top:34px;align-self:flex-start">Book an Appointment</a>
   </div>
+</section>
+
+<section class="process reveal" id="process">
+  <div class="phead">
+    <div class="eyebrow">The Couture Journey</div>
+    <h2>The Ordering Process</h2>
+    <p>From the moment you choose your gown until it arrives — every piece is made to measure, guided personally by the atelier.</p>
+  </div>
+  <div class="steps">
+
+    <div class="pstep">
+      <div class="pn">01</div>
+      <div>
+        <h3>Place Your Order</h3>
+        <p>Choose your gown from the Bridal or Evening collection and complete your order.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">02</div>
+      <div>
+        <h3>Payment</h3>
+        <p>Two ways to pay, whichever suits you:</p>
+        <div class="popts">
+          <div class="popt">
+            <span class="plabel">Online</span>
+            <h4>Card Payment</h4>
+            <p>Secure checkout on the site. Listed prices include a 5% card-processing fee.</p>
+          </div>
+          <div class="popt">
+            <span class="plabel">Studio</span>
+            <h4>Bank Transfer</h4>
+            <p>Arranged directly with the studio, at a reduced price without the card fee.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">03</div>
+      <div>
+        <h3>A Personal Consultation</h3>
+        <p>Once payment is received the atelier contacts you — special requests, personal details, and a precise understanding of exactly what you envisioned.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">04</div>
+      <div>
+        <h3>Photographs &amp; Video</h3>
+        <p>You send us photographs and a short video of yourself, so we understand your figure and proportions.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">05</div>
+      <div>
+        <h3>Your Measurements</h3>
+        <p>You receive a guided measurement document and complete your measurements step by step, with the atelier alongside you.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">06</div>
+      <div>
+        <h3>Order Confirmation</h3>
+        <p>Together we confirm every detail — design, adjustments, measurements and timeline — before work begins.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">07</div>
+      <div>
+        <h3>Made in the Atelier</h3>
+        <p>Your gown is cut and hand-finished in our Neve Tzedek atelier, to your measurements alone.</p>
+      </div>
+    </div>
+
+    <div class="pstep">
+      <div class="pn">08</div>
+      <div>
+        <h3>Final Approval Video</h3>
+        <p>When your gown is ready you receive a video of it for approval, before it leaves us.</p>
+        <div class="popts">
+          <div class="popt">
+            <span class="plabel">Approved</span>
+            <h4>Your Gown Ships</h4>
+            <p>Carefully packed and delivered to you, fully insured.</p>
+          </div>
+          <div class="popt">
+            <span class="plabel">Adjustments</span>
+            <h4>We Refine It</h4>
+            <p>Your notes return to the atelier, we adjust and send an updated video — until it is right.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="pfine">All prices include 18% VAT &nbsp;·&nbsp; Every gown made to measure &nbsp;·&nbsp; Guided by the atelier at every step</div>
 </section>
 
 <section class="band reveal" id="appointments">
